@@ -1,9 +1,16 @@
 <?php 
-	date_default_timezone_set('Europe/London');
-	include 'inc/dbh.inc.php';
-	include 'inc/comments.inc.php';
-	include 'inc/login.inc.php';
-	session_start();
+// ---------------------------------
+// Author: Eugene Gerber
+// Name: index.php
+// Description: Index page
+// Currently used to display different functionalities
+// ---------------------------------
+
+date_default_timezone_set('Europe/London');
+include 'inc/dbh.inc.php';
+include 'inc/comments.inc.php';
+include 'inc/login.inc.php';
+session_start();
 
 ?>
 
@@ -47,7 +54,6 @@
 		</div>
 		";
 ?>
-
 
 <!-- Comments -->
 <?php 
@@ -104,24 +110,22 @@ if (isset($_SESSION['id'])) {
 	";
 ?>
 
+<!-- File Upload -->
+<?php 
+echo "
+	<h2>File upload facility</h2>
 
-
-		<!-- File Upload -->
-		<?php 
-		echo "
-			<h2>File upload facility</h2>
-
-			<div class='form-wrapper'>
-				<form action='inc/upload.inc.php' method='post' enctype='multipart/form-data'>
-				    <label>Select file to upload:</label>
-				    <input type='file' name='file' id='file'>
-				    <br>
-					<button type='submit' name='submit'>UPLOAD</button>
-				</form>
-			</div>
-		</div>
-			";
-		?>
+	<div class='form-wrapper'>
+		<form action='inc/upload.inc.php' method='post' enctype='multipart/form-data'>
+		    <label>Select file to upload:</label>
+		    <input type='file' name='file' id='file'>
+		    <br>
+			<button type='submit' name='submit'>UPLOAD</button>
+		</form>
+	</div>
+</div>
+	";
+?>
 	</div>
 </body>
 </html>

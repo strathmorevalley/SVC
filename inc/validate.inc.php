@@ -1,4 +1,13 @@
 <?php
+// ---------------------------------
+// Author: Eugene Gerber
+// Name: validate.inc.php
+// Description: Validation Handler
+// Used to interact with the Database
+// Validate User-entered data
+// ---------------------------------
+
+// NOTE: Currently still a work in Progress
 
 // define variables and set to empty values
 $first = $last = $dob = $email = $uid = $pwd = $campusID = "";

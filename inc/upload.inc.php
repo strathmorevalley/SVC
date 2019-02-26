@@ -1,4 +1,12 @@
-<?php 
+<?php
+// ---------------------------------
+// Author: Eugene Gerber
+// Name: upload.inc.php
+// Description: Uploads Handler
+// Used to interact with the Database
+// Upload certain file types into the DB
+// ---------------------------------
+
 if (isset($_POST['submit'])){
 	$file = $_FILES['file'];
 

@@ -1,11 +1,11 @@
-<!-- 
-Author: Eugene Gerber
-Name: dbh.inc.php
-Description: Database Handler
-Used to connect to the database
- -->
+<?php
+// ---------------------------------
+// Author: Eugene Gerber
+// Name: dbh.inc.php
+// Description: Database Handler
+// Used to connect to the Database
+// ---------------------------------
 
-<?php 
 // Database Connection Credentials
 $dbServername = "localhost";
 $dbUsername = "root";
