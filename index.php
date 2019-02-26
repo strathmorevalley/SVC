@@ -13,7 +13,7 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
 
-	<title>TEST PHP & SQL | Insert data into the Database | </title>
+	<title>TEST PHP & SQL | Insert data into the Database | Add Comment Form</title>
 </head>
 <body>
 
