@@ -26,8 +26,8 @@
 
 	echo "
 		<form method='POST' action='".getLogin($conn)."'>
-			<input type='text' name='uid'>
-			<input type='password' name='pwd'>
+			<input type='text' name='uid' placeholder='Username'><br>
+			<input type='password' name='pwd' placeholder='Password'><br>
 			<button type='submit' name='loginSubmit'>Login</button>
 		</form>
 		";
@@ -47,6 +47,27 @@
 		</div>
 		";
 ?>
+
+
+<!-- Comments -->
+<?php 
+if (isset($_SESSION['id'])) {
+	echo "<div class='form-wrapper'>
+			<form method='POST' action='".setComments($conn)."'>
+			    <input type='hidden' name='uid' value='uid'>
+			    <input type='hidden' name='date' value='".date('Y-m-d H:i:s')."'>
+				<textarea name='message' cols='10' rows='10'></textarea>
+				<br>
+				<button name='commentSubmit' type='submit'>Comment</button>
+			</form>
+		</div>";
+} else {
+	echo "You need to be logged in to comment.<br>";
+}
+
+	getComments($conn);	
+?>	
+	
 <br><br><br>
 <?php 
 	echo "
@@ -83,33 +104,8 @@
 	";
 ?>
 
-		<!-- Query the Database -->
-		<!-- $sql = Define the Query to Run -->
-		<!-- $conn = Database Connection - located in dbh.inc.php -->
-		<!-- $result = Result of the DB Query -->
-		<!-- $row - Associative array of strings representing the fetched row -->
 
 
-		<!-- Comments -->
-		<?php 
-		echo "
-			<h2>Add a Comment</h2>
-
-			<div class='form-wrapper'>
-				<form method='POST' action='".setComments($conn)."'>
-				    <input type='hidden' name='uid' value='Anonymous'>
-				    <input type='hidden' name='date' value='".date('Y-m-d H:i:s')."'>
-					<textarea name='message' cols='10' rows='10'></textarea>
-					<br>
-					<button name='commentSubmit' type='submit'>Comment</button>
-				</form>
-			</div>
-			";
-
-		// The function: getComments(), will display all the Comments
-			getComments($conn);	
-		?>	
-		
 		<!-- File Upload -->
 		<?php 
 		echo "
