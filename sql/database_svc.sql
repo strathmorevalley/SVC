@@ -3,6 +3,8 @@ CREATE DATABASE strathmore;
 
 -- clear table (TRUNCATE) --
 -- truncate table "tablename"
+truncate table users;
+truncate table lecturers
 truncate table students;
 truncate table comments;
 truncate table students;
@@ -93,7 +95,7 @@ ALTER TABLE lecturers AUTO_INCREMENT=1230001;
 ALTER TABLE students AUTO_INCREMENT=1230001;
 
 -- insert data into "table" --
-INSERT INTO students (firstName, lastName, dob, email, uid, campusID, password) VALUES ('One', 'Student-1', '1984-01-01', 'student1@svc.com', '1230001', 'Dundee', 'password');
+INSERT INTO students (firstName, lastName, dob, email, uid, campusID, password) VALUES ('One', 'Student-1', '1984-01-01', 'student1@svc.com', '1230002', 'Dundee', 'password');
 INSERT INTO students (firstName, lastName, dob, email, uid, campusID, password) VALUES ('Two', 'Student-21', '1984-01-01', 'student2@svc.com', '1230001', 'Blairgowrie', 'password');
 INSERT INTO lecturers (firstName, lastName, dob, email, uid, campusID, password) VALUES ('Lecturer', 'One', '1984-01-01', 'piet@svc.com', '1234567', 'Dundee', 'password');
 
