@@ -5,9 +5,13 @@ CREATE DATABASE strathmore;
 -- truncate table "tablename"
 truncate table students;
 truncate table comments;
+truncate table students;
+truncate table comments;
 
 -- delete table (DROP) --
 -- drop table "tablename"
+drop table users;
+drop table lecturers;
 drop table students;
 drop table comments;
 
@@ -19,7 +23,7 @@ CREATE TABLE students(
 ,   lastName VARCHAR(50) NOT NULL
 ,   dob DATE
 ,   email VARCHAR(128) NOT NULL
-,	uid VARCHAR(7) UNIQUE NOT NULL
+,	uid INT(8) UNSIGNED UNIQUE NOT NULL
 ,	campusID VARCHAR(8)
 ,   password VARCHAR(32) NOT NULL
 );
@@ -31,7 +35,7 @@ CREATE TABLE lecturers(
 ,   lastName VARCHAR(50) NOT NULL
 ,   dob DATE
 ,   email VARCHAR(128) NOT NULL
-,	uid VARCHAR(7) UNIQUE NOT NULL
+,	uid INT(8) UNSIGNED UNIQUE NOT NULL
 ,	campusID VARCHAR(8)
 ,   password VARCHAR(32) NOT NULL
 );
@@ -45,17 +49,17 @@ CREATE TABLE users(
 ,   email VARCHAR(128) NOT NULL
 ,	utype VARCHAR(1)
 , 	CHECK (utype='l' OR utype='L' OR utype='s' OR utype='S')
-,	uid VARCHAR(7) UNIQUE NOT NULL
+,	uid INT(8) UNSIGNED UNIQUE NOT NULL
 ,	campusID VARCHAR(8)
 ,   password VARCHAR(32) NOT NULL
 );
 
 -- comments table --
 CREATE TABLE comments (
-	id int(8) NOT NULL AUTO_INCREMENT PRIMARY KEY
+	id INT(8) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY
 ,	date datetime NOT NULL
 ,   message TEXT NOT NULL
-,	uid VARCHAR(7) NOT NULL
+,	uid INT(8) UNSIGNED UNIQUE NOT NULL
 );
 
 -- campus table --
@@ -75,15 +79,25 @@ create table courses( ID INT(8)
 ,	unitID INT(8)
 );
 
+-- edit/change table (ALTER) --
+
+-- create foreign keys --
+ALTER TABLE `comments` 
+ADD CONSTRAINT `UsersComments_FK` 
+FOREIGN KEY (`uid`) REFERENCES `users`(`id`) 
+ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+-- set "table" PK to auto-increment from ="number"
+ALTER TABLE users AUTO_INCREMENT=1230001;
+ALTER TABLE lecturers AUTO_INCREMENT=1230001;
+ALTER TABLE students AUTO_INCREMENT=1230001;
+
 -- insert data into "table" --
 INSERT INTO students (firstName, lastName, dob, email, uid, campusID, password) VALUES ('One', 'Student-1', '1984-01-01', 'student1@svc.com', '1230001', 'Dundee', 'password');
 INSERT INTO students (firstName, lastName, dob, email, uid, campusID, password) VALUES ('Two', 'Student-21', '1984-01-01', 'student2@svc.com', '1230001', 'Blairgowrie', 'password');
+INSERT INTO lecturers (firstName, lastName, dob, email, uid, campusID, password) VALUES ('Lecturer', 'One', '1984-01-01', 'piet@svc.com', '1234567', 'Dundee', 'password');
 
 -- delete instance from "table" --
 DELETE FROM students WHERE id='1';
 DELETE FROM students WHERE students.id=2 
 
-
-
-
-INSERT INTO lecturers (firstName, lastName, dob, email, uid, campusID, password) VALUES ('Lecturer', 'One', '1984-01-01', 'piet@svc.com', '1234567', 'Dundee', 'password');
