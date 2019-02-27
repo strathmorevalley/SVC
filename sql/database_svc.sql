@@ -7,8 +7,6 @@ truncate table users;
 truncate table lecturers
 truncate table students;
 truncate table comments;
-truncate table students;
-truncate table comments;
 
 -- delete table (DROP) --
 -- drop table "tablename"
@@ -93,6 +91,11 @@ ON DELETE RESTRICT ON UPDATE RESTRICT;
 ALTER TABLE users AUTO_INCREMENT=1230001;
 ALTER TABLE lecturers AUTO_INCREMENT=1230001;
 ALTER TABLE students AUTO_INCREMENT=1230001;
+
+
+-- ***********************
+-- *** RANDOM commands ***
+-- ***********************
 
 -- insert data into "table" --
 INSERT INTO students (firstName, lastName, dob, email, uid, campusID, password) VALUES ('One', 'Student-1', '1984-01-01', 'student1@svc.com', '1230002', 'Dundee', 'password');
