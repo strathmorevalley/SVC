@@ -23,7 +23,6 @@ include 'dbh.inc.php';
 			$message = $_POST['message'];
 
 			$sql = "INSERT INTO comments (uid, date, message) VALUES ('$uid', '$date', '$message')";
-
 			$result = mysqli_query($conn, $sql);
 		}
 	}
@@ -32,12 +31,35 @@ include 'dbh.inc.php';
 	function getComments($conn) {
 		$sql = "SELECT * FROM comments";
 		$result = mysqli_query($conn, $sql);
-
 		while ($row = mysqli_fetch_assoc($result)) {
-			echo "<div class='comment-box'><p>";
-				echo "<strong>".$row['uid']."</strong></br></br>";
+			$id = $row['uid'];
+			$sql2 = "SELECT * FROM user WHERE id='$id'";
+			$result2 = mysqli_query($conn, $sql2);
+			if ($row2 = mysqli_fetch_assoc($result2)) { 
+				echo "<div class='comment-box'><p>";
+				echo "<strong>".$row2['uid']."</strong></br></br>";
 				echo nl2br($row['message'])."<br><br>";
-				echo $row['date']."</p>";
+				echo ($row['date']);
+				echo "</p>";
+				echo "
+					<form class='delete-form' method='POST' action='".deleteComments($conn)."'>
+					    <input type='hidden' name='id' value='".$row['id']."'>
+						<button type='submit' name='commentDelete'>Delete</button>
+					</form>
+					<form class='edit-form' method='POST' action='inc/editComment.inc.php'>
+					    <input type='hidden' name='id' value='".$row['id']."'>
+					    <input type='hidden' name='uid' value='".$row['uid']."'>
+					    <input type='hidden' name='date' value='".$row['date']."'>
+					    <input type='hidden' name='message' value='".$row['message']."'>
+						<button>Edit</button>
+					</form>
+					</div>";
+			}
+
+			echo "<div class='comment-box'><p>";
+			echo "<strong>".$row['uid']."</strong></br></br>";
+			echo nl2br($row['message'])."<br><br>";
+			echo $row['date']."</p>";
 			echo "
 				<form class='delete-form' method='POST' action='".deleteComments($conn)."'>
 				    <input type='hidden' name='id' value='".$row['id']."'>

@@ -60,7 +60,7 @@ session_start();
 if (isset($_SESSION['id'])) {
 	echo "<div class='form-wrapper'>
 			<form method='POST' action='".setComments($conn)."'>
-			    <input type='hidden' name='uid' value='uid'>
+			    <input type='hidden' name='uid' value='".$_SESSION['id']."'>
 			    <input type='hidden' name='date' value='".date('Y-m-d H:i:s')."'>
 				<textarea name='message' cols='10' rows='10'></textarea>
 				<br>
@@ -73,6 +73,23 @@ if (isset($_SESSION['id'])) {
 
 	getComments($conn);	
 ?>	
+
+<!-- File Upload -->
+<?php 
+echo "
+	<h2>File upload facility</h2>
+
+	<div class='form-wrapper'>
+		<form action='inc/upload.inc.php' method='post' enctype='multipart/form-data'>
+		    <label>Select file to upload:</label>
+		    <input type='file' name='file' id='file'>
+		    <br>
+			<button type='submit' name='submit'>UPLOAD</button>
+		</form>
+	</div>
+</div>
+	";
+?>
 	
 <br><br><br>
 <?php 
@@ -110,22 +127,6 @@ if (isset($_SESSION['id'])) {
 	";
 ?>
 
-<!-- File Upload -->
-<?php 
-echo "
-	<h2>File upload facility</h2>
-
-	<div class='form-wrapper'>
-		<form action='inc/upload.inc.php' method='post' enctype='multipart/form-data'>
-		    <label>Select file to upload:</label>
-		    <input type='file' name='file' id='file'>
-		    <br>
-			<button type='submit' name='submit'>UPLOAD</button>
-		</form>
-	</div>
-</div>
-	";
-?>
 	</div>
 </body>
 </html>

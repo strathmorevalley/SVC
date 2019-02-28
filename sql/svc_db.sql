@@ -50,14 +50,19 @@ CREATE TABLE comments (
 	id INT(8) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY
 ,	date datetime NOT NULL
 ,   message TEXT NOT NULL
-,	uid INT(8) UNSIGNED UNIQUE NOT NULL
+,	uid INT(8) NOT NULL
 );
 
+ALTER TABLE users AUTO_INCREMENT=1230001;
+
+
+-- ********************************** --
+-- ADD Foreign key --
 ALTER TABLE `comments` 
 ADD CONSTRAINT `UsersComments_FK` 
 FOREIGN KEY (`uid`) REFERENCES `users`(`id`) 
 ON DELETE RESTRICT ON UPDATE RESTRICT;
 
-ALTER TABLE users AUTO_INCREMENT=1230001;
-
+-- DROP Foreign key --
+ALTER TABLE comments DROP FOREIGN KEY UsersComments_FK;
 -- ********************************** --
